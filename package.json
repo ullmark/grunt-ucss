@@ -35,5 +35,8 @@
   },
   "keywords": [
     "gruntplugin"
-  ]
+  ],
+  "dependencies": {
+    "ucss": "*"
+  }
 }
