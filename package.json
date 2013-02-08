@@ -1,6 +1,6 @@
 {
   "name": "grunt-ucss",
-  "description": "The best sample grunt tasks ever.",
+  "description": "The best grunt plugin ever.",
   "version": "0.1.0",
   "homepage": "https://github.com/ullmark/grunt-ucss",
   "author": {
@@ -20,21 +20,20 @@
       "url": "https://github.com/ullmark/grunt-ucss/blob/master/LICENSE-MIT"
     }
   ],
-  "main": "grunt.js",
-  "bin": "bin/grunt-ucss",
+  "main": "Gruntfile.js",
   "engines": {
-    "node": "*"
+    "node": ">= 0.8.0"
   },
   "scripts": {
     "test": "grunt test"
   },
   "devDependencies": {
-    "grunt": "~0.3.17"
+    "grunt-contrib-jshint": "0.1.1rc6",
+    "grunt-contrib-clean": "0.4.0rc6",
+    "grunt-contrib-nodeunit": "0.1.2rc6",
+    "grunt": "0.4.0rc6"
   },
   "keywords": [
     "gruntplugin"
-  ],
-  "dependencies": {
-    "ucss": "~0.2.1-beta"
-  }
+  ]
 }
