@@ -1,0 +1,40 @@
+{
+  "name": "grunt-ucss",
+  "description": "The best sample grunt tasks ever.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/ullmark/grunt-ucss",
+  "author": {
+    "name": "Markus Ullmark",
+    "email": "ullmark@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ullmark/grunt-ucss.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ullmark/grunt-ucss/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/ullmark/grunt-ucss/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "grunt.js",
+  "bin": "bin/grunt-ucss",
+  "engines": {
+    "node": "*"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt": "~0.3.17"
+  },
+  "keywords": [
+    "gruntplugin"
+  ],
+  "dependencies": {
+    "ucss": "~0.2.1-beta"
+  }
+}
