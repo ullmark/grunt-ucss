@@ -1,6 +1,6 @@
 # grunt-ucss
 
-> The best grunt plugin ever.
+> Run [ucss](https://github.com/operasoftware/ucss) with grunt.
 
 ## Getting Started
 _If you haven't used [grunt][] before, be sure to check out the [Getting Started][] guide._

@@ -30,28 +30,34 @@ module.exports = function(grunt) {
 
     // Configuration to be run (and then tested).
     ucss: {
-      default_options: {
-        options: {
-        },
-        files: {
-          'tmp/default_options': ['test/fixtures/testing', 'test/fixtures/123'],
-        },
+      
+      local: {
+        options: {},
+        html: ['test/fixtures/*.html'],
+        css: ['test/fixtures/*.css']
       },
-      custom_options: {
-        options: {
-          separator: ': ',
-          punctuation: ' !!!',
-        },
-        files: {
-          'tmp/custom_options': ['test/fixtures/testing', 'test/fixtures/123'],
-        },
-      },
+
+      remote: {
+        options: {},
+        html: ['http://localhost:3000/foo.html', 'http://localhost:3000/bar.html'],
+        css: ['http://localhost:3000/foo.css']
+      }
     },
 
     // Unit tests.
     nodeunit: {
       tests: ['test/*_test.js'],
     },
+
+    server: {
+      port: 3000,
+      base: 'test/fixtures'
+    },
+
+    watch: {
+      files: ['tasks/**/*.js', 'test/**/*.*'],
+      tasks: ['jshint', 'test']
+    }
 
   });
 
@@ -62,10 +68,13 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
   grunt.registerTask('test', ['clean', 'ucss', 'nodeunit']);
+
+  grunt.registerTask('dev', ['jshint', 'server', 'test', 'watch']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);

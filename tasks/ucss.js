@@ -6,9 +6,12 @@
  * Licensed under the MIT license.
  */
 
-'use strict';
 
 module.exports = function(grunt) {
+  
+  'use strict';
+
+  var ucss = require('ucss');
 
   // Please see the grunt documentation for more information regarding task
   // creation: https://github.com/gruntjs/grunt/blob/devel/docs/toc.md
