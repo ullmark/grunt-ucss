@@ -38,6 +38,7 @@
     "gruntplugin"
   ],
   "dependencies": {
-    "ucss": "*"
+    "ucss": "*",
+    "underscore": "~1.4.4"
   }
 }

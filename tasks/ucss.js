@@ -11,44 +11,54 @@ module.exports = function(grunt) {
   
   'use strict';
 
-  var ucss = require('ucss');
+  var _     = require('underscore'),
+      ucss  = require('ucss');
 
   // Please see the grunt documentation for more information regarding task
   // creation: https://github.com/gruntjs/grunt/blob/devel/docs/toc.md
 
   grunt.registerMultiTask('ucss', 'Your task description goes here.', function() {
+
+    // this task runs async
+    var done = this.async();
+
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
-      punctuation: '.',
-      separator: ', '
+      optimize: false,
+      whitelist: [],
+      auth: false
     });
 
-    // Iterate over all specified file groups.
-    this.files.forEach(function(fileObj) {
-      // The source files to be concatenated. The "nonull" option is used
-      // to retain invalid files/patterns so they can be warned about.
-      var files = grunt.file.expand({nonull: true}, fileObj.src);
+    var css   = grunt.file.expand(this.data.css),
+        html  = grunt.file.expand(this.data.html),
+        data  = this.data;
 
-      // Concat specified files.
-      var src = files.map(function(filepath) {
-        // Warn if a source file/pattern was invalid.
-        if (!grunt.file.exists(filepath)) {
-          grunt.log.error('Source file "' + filepath + '" not found.');
-          return '';
+    // use the ucss package to analyze our stuff.
+    ucss.analyze(css, html, options.whitelist, options.auth, function(result) {
+
+      // if the user wants optimization but haven't specified
+      // an output.
+      if (options.optimize && !data.dest) {
+        grunt.log.error('You must specify a destination ("dest") when optimization is enabled');
+      }
+
+      // enumerate the used selectors.
+      for (var key in result.used) {
+        var usedAmount = result.used[key];
+
+        // if the selector wasn't used.
+        // we need to log it, AND clean it away it 
+        // it's specified.
+        if (!usedAmount) {
+
+
+          grunt.log.writeln(key + " wasn't used");
         }
-        // Read file source.
-        return grunt.file.read(filepath);
-      }).join(options.separator);
+      }
 
-      // Handle options.
-      src += options.punctuation;
-
-      // Write the destination file.
-      grunt.file.write(fileObj.dest, src);
-
-      // Print a success message.
-      grunt.log.writeln('File "' + fileObj.dest + '" created.');
+      done();
     });
+
   });
 
 };

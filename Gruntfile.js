@@ -32,16 +32,16 @@ module.exports = function(grunt) {
     ucss: {
       
       local: {
-        options: {},
-        html: ['test/fixtures/*.html'],
-        css: ['test/fixtures/*.css']
-      },
-
-      remote: {
-        options: {},
-        html: ['http://localhost:3000/foo.html', 'http://localhost:3000/bar.html'],
-        css: ['http://localhost:3000/foo.css']
+        options: {
+          optimize: true,
+          whitelist: [],
+          auth: false
+        },
+        html: 'test/fixtures/foo.html',
+        css: ['test/fixtures/foo.css'],
+        dest: 'tmp/foo.opt.css'
       }
+
     },
 
     // Unit tests.
