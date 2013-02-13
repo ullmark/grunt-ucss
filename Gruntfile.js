@@ -33,7 +33,6 @@ module.exports = function(grunt) {
       
       local: {
         options: {
-          optimize: true,
           whitelist: [],
           auth: false
         },
