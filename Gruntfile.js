@@ -38,7 +38,7 @@ module.exports = function(grunt) {
         },
         html: 'test/fixtures/foo.html',
         css: ['test/fixtures/foo.css'],
-        dest: 'tmp/foo.opt.css'
+        dest: 'tmp'
       }
 
     },

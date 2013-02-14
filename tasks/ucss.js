@@ -11,11 +11,27 @@ module.exports = function(grunt) {
   
   'use strict';
 
+  // our requires..
   var _     = require('underscore'),
-      ucss  = require('ucss');
+      ucss  = require('ucss'),
+      path  = require('path');
 
-  // Please see the grunt documentation for more information regarding task
-  // creation: https://github.com/gruntjs/grunt/blob/devel/docs/toc.md
+  // ### removeSelectorsFromCss
+  // this function removes css selectors from the provided css string
+  // using a regex.
+  var removeSelectorsFromCss = function(css, selectors) {
+    var clean = css;
+    _.each(selectors, function(selector) {
+      // escape any valid css selector character that might conflict with the regex.
+      var escaped = selector.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+      var cleaner = new RegExp(escaped + '[\\s\\r\\n]*\\{{1}[^\\}]*\\}{1}[\\s\\r\\n]*', 'gm');
+      clean = clean.replace(cleaner, '');
+    });
+    return clean;
+  };
+
+  // ucss task
+  // ---------
 
   grunt.registerMultiTask('ucss', 'Your task description goes here.', function() {
 
@@ -24,9 +40,8 @@ module.exports = function(grunt) {
 
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
-      optimize: false,
       whitelist: [],
-      auth: false
+      auth: null
     });
 
     var css   = grunt.file.expand(this.data.css),
@@ -36,8 +51,6 @@ module.exports = function(grunt) {
     // use the ucss package to analyze our stuff.
     ucss.analyze(css, html, options.whitelist, options.auth, function(result) {
       var neverUsed = [];
-
-      grunt.log.subhead("Analyzing your CSS...");
 
       // enumerate the used selectors.
       for (var key in result.used) {
@@ -60,35 +73,26 @@ module.exports = function(grunt) {
 
       // we've found unused CSS
       else {
-        grunt.log.errorlns("I think I've found unnecessary css, the following selectors we're never used.");
-        grunt.log.writeln();
+        grunt.log.errorlns("I think I've found unnecessary css, the following selectors we're never used:");
         grunt.log.writeln(neverUsed.join(', '));
 
         // we have a destination, 
         // the user want's us to create cleaned versions.
         if (data.dest) {
+          grunt.log.subhead('Creating clean versions');
+
           _.each(css, function(cssFile) {
-            
             // read the file, that should be parsed. 
             var content = grunt.file.read(cssFile);
-            var optimized = '';
+            var cleanedCss = removeSelectorsFromCss(content, neverUsed);
 
-            // enumerate each selector that wasn't used...
-            _.each(neverUsed, function(selector) {
-              // ... and clean it away.
-              var regex = new RegExp(selector + '[\\s\\r\\n]*\\{.*\\}', 'gi');
-              console.log(regex.toString());
-              optimized = content.replace(regex, '');
-              console.log(optimized);
-            });
-          
+            var basename = path.basename(cssFile, '.css');
+            var cleanedCssTarget = path.join(data.dest, basename + '.clean' + '.css');
+            grunt.file.write(cleanedCssTarget, cleanedCss);
+            grunt.log.ok('"' + cleanedCssTarget + '" created.');
           });
-
         }
       }
-
     });
-
   });
-
 };

@@ -1,6 +1,7 @@
 
 .once {
-
+  color: orange;
+  background: url('image.png');
 }
 
 .twice {
@@ -8,5 +9,13 @@
 }
 
 .never {
+  
+}
+
+.never .indeed {
+
+}
+
+#pretty .long .selector div[^class=some] li:nth-child(5) {
   
 }
