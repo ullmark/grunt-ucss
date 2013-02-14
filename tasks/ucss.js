@@ -37,7 +37,7 @@ module.exports = function(grunt) {
     ucss.analyze(css, html, options.whitelist, options.auth, function(result) {
       var neverUsed = [];
 
-      grunt.log.subhead("Analyzing...");
+      grunt.log.subhead("Analyzing your CSS...");
 
       // enumerate the used selectors.
       for (var key in result.used) {
@@ -69,7 +69,7 @@ module.exports = function(grunt) {
         if (data.dest) {
           _.each(css, function(cssFile) {
             
-            // read the file
+            // read the file, that should be parsed. 
             var content = grunt.file.read(cssFile);
             var optimized = '';
 
