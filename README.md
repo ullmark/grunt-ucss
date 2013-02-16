@@ -1,4 +1,5 @@
 # grunt-ucss
+note; not released to npm yet...
 
 > Run [ucss](https://github.com/operasoftware/ucss) with grunt. Also adds the option to 
 > create "cleaned" versions of the css-files with the unused css selectors removed.
