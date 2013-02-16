@@ -31,14 +31,16 @@ module.exports = function(grunt) {
     // Configuration to be run (and then tested).
     ucss: {
       
-      local: {
-        options: {
-          whitelist: [],
-          auth: false
-        },
-        html: 'test/fixtures/foo.html',
-        css: ['test/fixtures/foo.css'],
-        dest: 'tmp'
+      simple: {
+        html: ['test/fixtures/simple/*.html'],
+        css: ['test/fixtures/simple/*.css'],
+        dest: 'tmp/simple'
+      },
+
+      bootstrap: {
+        html: ['test/fixtures/bootstrap/*.html'],
+        css: ['test/fixtures/bootstrap/*.css'],
+        dest: 'tmpl/bootstrap'
       }
 
     },

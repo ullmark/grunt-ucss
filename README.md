@@ -1,8 +1,7 @@
 # grunt-ucss
 
-> Run [ucss](https://github.com/operasoftware/ucss) with grunt.
-
-
+> Run [ucss](https://github.com/operasoftware/ucss) with grunt. Also adds the option to 
+> create "cleaned" versions of the css-files with the unused css selectors removed.
 
 ## Getting Started
 _If you haven't used [grunt][] before, be sure to check out the [Getting Started][] guide._
@@ -26,6 +25,8 @@ If the plugin has been installed correctly, running `grunt --help` at the comman
 [package.json]: https://npmjs.org/doc/json.html
 
 ## The "ucss" task
+The task can do two things; Analyze html+css using [ucss][] and print out any unused selectors
+in the grunt log and use that information to create new clean
 
 ### Overview
 In your project's Gruntfile, add a section named `ucss` to the data object passed into `grunt.initConfig()`.
@@ -59,7 +60,7 @@ be listed or cleaned away even though it isn't used.
 Type: `Object`
 Default value: `null`
 
-Let's you specify authentication to use. See [ucss documentation](https://github.com/operasoftware/ucss#logging-in) for more details
+Let's you specify authentication to use. See [ucss auth documentation](https://github.com/operasoftware/ucss#logging-in) for more details
 
 #### html
 
@@ -78,5 +79,12 @@ specify a directory here. Given an analyzed css named `styles.css` a file named
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt][].
 
+## TODO
+- Create ALOT of more test-cases.
+- Verify/Adjust code for older versions of grunt (0.3).
+
 ## Release History
 _(Nothing yet)_
+
+
+[ucss]: https://github.com/operasoftware/ucss

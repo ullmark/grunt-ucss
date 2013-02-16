@@ -34,7 +34,6 @@ module.exports = function(grunt) {
   // ---------
 
   grunt.registerMultiTask('ucss', 'Your task description goes here.', function() {
-
     // this task runs async
     var done = this.async();
 
@@ -73,13 +72,13 @@ module.exports = function(grunt) {
 
       // we've found unused CSS
       else {
-        grunt.log.errorlns("I think I've found unnecessary css, the following selectors we're never used:");
+        grunt.log.errorlns("Found unnecessary css, the following selectors we're never used:");
         grunt.log.writeln(neverUsed.join(', '));
 
         // we have a destination, 
         // the user want's us to create cleaned versions.
         if (data.dest) {
-          grunt.log.subhead('Creating clean versions');
+          grunt.log.subhead('Creating cleaned versions');
 
           _.each(css, function(cssFile) {
             // read the file, that should be parsed. 
