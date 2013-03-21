@@ -8,7 +8,7 @@
 
 
 module.exports = function(grunt) {
-  
+
   'use strict';
 
   // our requires..
@@ -56,7 +56,7 @@ module.exports = function(grunt) {
         var usedAmount = result.used[key];
 
         // if the selector wasn't used.
-        // we need to log it, AND clean it away it 
+        // we need to log it, AND clean it away it
         // it's specified.
         if (!usedAmount) {
           neverUsed.push(key);
@@ -75,13 +75,13 @@ module.exports = function(grunt) {
         grunt.log.errorlns("Found unnecessary css, the following selectors we're never used:");
         grunt.log.writeln(neverUsed.join(', '));
 
-        // we have a destination, 
+        // we have a destination,
         // the user want's us to create cleaned versions.
         if (data.dest) {
           grunt.log.subhead('Creating cleaned versions');
 
           _.each(css, function(cssFile) {
-            // read the file, that should be parsed. 
+            // read the file, that should be parsed.
             var content = grunt.file.read(cssFile);
             var cleanedCss = removeSelectorsFromCss(content, neverUsed);
 
