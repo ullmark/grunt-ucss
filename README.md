@@ -35,16 +35,18 @@ In your project's Gruntfile, add a section named `ucss` to the data object passe
 ```js
 grunt.initConfig({
   ucss: {
-      local: {
-        options: {
-          whitelist: [],
-          auth: null
-        },
-        html: 'test/fixtures/foo.html',
-        css: ['test/fixtures/foo.css'],
-        dest: 'tmp'
-      }
+    target: {
+      options: {
+        whitelist: ['.some-ok-selector'],
+        auth: null
+      },
+      pages: {
+        crawl: 'http://localhost/crawlstart',
+        include: ['http://localhost/extra-not-reachable-by-crawl']
+      },
+      css: ['http://localhost/styles.css']
     }
+  }
 })
 ```
 
@@ -82,7 +84,6 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## TODO
 - Create ALOT of more test-cases.
-- Verify/Adjust code for older versions of grunt (0.3).
 
 ## Release History
 _(Nothing yet)_

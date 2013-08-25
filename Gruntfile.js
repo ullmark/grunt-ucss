@@ -32,7 +32,9 @@ module.exports = function(grunt) {
     ucss: {
 
       simple: {
-        html: ['test/fixtures/simple/*.html'],
+        pages: {
+          crawl: 'test/fixtures/simple/foo.html',
+        },
         css: ['test/fixtures/simple/*.css']
       }
 
@@ -43,7 +45,7 @@ module.exports = function(grunt) {
       tests: ['test/*_test.js'],
     },
 
-    server: {
+    connect: {
       port: 3000,
       base: 'test/fixtures'
     },
@@ -67,8 +69,7 @@ module.exports = function(grunt) {
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
   grunt.registerTask('test', ['clean', 'ucss', 'nodeunit']);
-
-  grunt.registerTask('dev', ['jshint', 'server', 'test', 'watch']);
+  grunt.registerTask('dev', ['jshint', 'connect', 'test', 'watch']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);

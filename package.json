@@ -35,13 +35,14 @@
     "grunt-contrib-clean": "~0.4.0",
     "grunt-contrib-nodeunit": "~0.1.2",
     "grunt": "~0.4.1",
-    "grunt-contrib-watch": "~0.3.1"
+    "grunt-contrib-watch": "~0.3.1",
+    "grunt-contrib-connect": "~0.3.0"
   },
   "keywords": [
     "gruntplugin"
   ],
   "dependencies": {
     "underscore": "~1.4.4",
-    "ucss": "~0.2.2-beta"
+    "ucss": "~0.4.1-beta"
   }
 }

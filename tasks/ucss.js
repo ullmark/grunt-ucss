@@ -16,82 +16,47 @@ module.exports = function(grunt) {
       ucss  = require('ucss'),
       path  = require('path');
 
-  // ### removeSelectorsFromCss
-  // this function removes css selectors from the provided css string
-  // using a regex.
-  var removeSelectorsFromCss = function(css, selectors) {
-    var clean = css;
-    _.each(selectors, function(selector) {
-      // escape any valid css selector character that might conflict with the regex.
-      var escaped = selector.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
-      var cleaner = new RegExp(escaped + '[\\s\\r\\n]*\\{{1}[^\\}]*\\}{1}[\\s\\r\\n]*', 'gm');
-      clean = clean.replace(cleaner, '');
-    });
-    return clean;
-  };
-
   // ucss task
   // ---------
 
   grunt.registerMultiTask('ucss', 'Your task description goes here.', function() {
+
     // this task runs async
     var done = this.async();
 
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
-      whitelist: [],
-      auth: null
+      auth: null,
+      whitelist: []
     });
 
     var css   = grunt.file.expand(this.data.css),
-        html  = grunt.file.expand(this.data.html),
+        pages = grunt.file.expand(this.data.pages),
         data  = this.data;
 
     // use the ucss package to analyze our stuff.
-    ucss.analyze(css, html, options.whitelist, options.auth, function(result) {
-      var neverUsed = [];
+    ucss.analyze(data.pages, css, options, null, function(result) {
 
-      // enumerate the used selectors.
-      for (var key in result.used) {
-        var usedAmount = result.used[key];
+      if (result.total_unused) {
+        grunt.log.subhead(result.total_unused + ' unused CSS selectors found!');
 
-        // if the selector wasn't used.
-        // we need to log it, AND clean it away it
-        // it's specified.
-        if (!usedAmount) {
-          neverUsed.push(key);
-        }
+        _.each(result.selectors, function(data, selector) {
+          if (!data.ignored && !data.matches_html) {
+            grunt.log.write(selector, ' => ');
+            _.each(data.pos_css, function(data, filename) {
+              grunt.log.write(filename + '[' + data.join(',') + ']');
+            });
+            grunt.log.writeln();
+          }
+        });
       }
 
-      // if we didn't find any selectors that wasn't used.
-      // report it.
-      if (!neverUsed.length) {
-        grunt.log.ok("Congratulations, you have no unnecessary css");
-        done();
-      }
-
-      // we've found unused CSS
       else {
-        grunt.log.errorlns("Found unnecessary css, the following selectors we're never used:");
-        grunt.log.writeln(neverUsed.join(', '));
-
-        // we have a destination,
-        // the user want's us to create cleaned versions.
-        if (data.dest) {
-          grunt.log.subhead('Creating cleaned versions');
-
-          _.each(css, function(cssFile) {
-            // read the file, that should be parsed.
-            var content = grunt.file.read(cssFile);
-            var cleanedCss = removeSelectorsFromCss(content, neverUsed);
-
-            var basename = path.basename(cssFile, '.css');
-            var cleanedCssTarget = path.join(data.dest, basename + '.clean' + '.css');
-            grunt.file.write(cleanedCssTarget, cleanedCss);
-            grunt.log.ok('"' + cleanedCssTarget + '" created.');
-          });
-        }
+        grunt.log.oklns('You have no unused CSS. Congratulations!');
       }
+
+      done();
+
     });
   });
 };
