@@ -89,7 +89,7 @@ to get a version ppl can start using. I will add more test-cases and so on later
 got an idea or feature to add just tell med :)
 
 ## Release History
-_(Nothing yet)_
+  - 0.1.0 - A first alpha version that prints unused selectors and their location in the css-files
 
 
 [ucss]: https://github.com/operasoftware/ucss
