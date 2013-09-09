@@ -1,5 +1,4 @@
 # grunt-ucss
-note; not released to npm yet...
 
 > Run [ucss](https://github.com/operasoftware/ucss) with grunt. Also adds the option to 
 > create "cleaned" versions of the css-files with the unused css selectors removed.
@@ -65,25 +64,26 @@ Default value: `null`
 
 Let's you specify authentication to use. See [ucss auth documentation](https://github.com/operasoftware/ucss#logging-in) for more details
 
-#### html
+#### pages.crawl
+Type: `String`
+Default value: `[]`
 
-Specify what html files analyze
+Specify a html-file to start crawling
+
+#### pages.include
+Type: `Array` of `String`
+Default value: `[]`
+
+Any extra pages not included in the crawl.
 
 #### css 
 
 Specify what css files to analyze
 
-#### dest
-
-If you want the task to create *cleaned* versions of the css files
-specify a directory here. Given an analyzed css named `styles.css` a file named 
-`styles.clean.css` will be created in the directory.
-
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt][].
 
 ## TODO
-- Create ALOT of more test-cases.
 
 ## Release History
 _(Nothing yet)_
