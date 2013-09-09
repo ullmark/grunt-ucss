@@ -1,7 +1,7 @@
 {
   "name": "grunt-ucss",
-  "description": "The best grunt plugin ever.",
-  "version": "0.1.0",
+  "description": "Run ucss with grunt.",
+  "version": "0.1.1",
   "homepage": "https://github.com/ullmark/grunt-ucss",
   "author": {
     "name": "Markus Ullmark",
@@ -39,7 +39,9 @@
     "grunt-contrib-connect": "~0.3.0"
   },
   "keywords": [
-    "gruntplugin"
+    "gruntplugin",
+    "ucss",
+    "css"
   ],
   "dependencies": {
     "underscore": "~1.4.4",
