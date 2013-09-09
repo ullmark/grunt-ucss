@@ -84,6 +84,9 @@ Specify what css files to analyze
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt][].
 
 ## TODO
+So, I started up this task and then abandoned it for a while... I've released this initial version just 
+to get a version ppl can start using. I will add more test-cases and so on later on, and if you
+got an idea or feature to add just tell med :)
 
 ## Release History
 _(Nothing yet)_
