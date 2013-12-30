@@ -1,7 +1,7 @@
 {
   "name": "grunt-ucss",
   "description": "Run ucss with grunt.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "https://github.com/ullmark/grunt-ucss",
   "author": {
     "name": "Markus Ullmark",

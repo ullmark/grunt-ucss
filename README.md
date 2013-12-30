@@ -1,7 +1,6 @@
 # grunt-ucss
 
-> Run [ucss](https://github.com/operasoftware/ucss) with grunt. Also adds the option to 
-> create "cleaned" versions of the css-files with the unused css selectors removed.
+> Run [ucss](https://github.com/operasoftware/ucss) with grunt.
 
 ## Getting Started
 _If you haven't used [grunt][] before, be sure to check out the [Getting Started][] guide._
@@ -90,6 +89,7 @@ got an idea or feature to add just tell med :)
 
 ## Release History
   - 0.1.0 - A first alpha version that prints unused selectors and their location in the css-files
+  - 0.1.2 - Updated the README to remove text about *cleaned version*
 
 
 [ucss]: https://github.com/operasoftware/ucss
