@@ -45,6 +45,6 @@
   ],
   "dependencies": {
     "underscore": "~1.4.4",
-    "ucss": "~0.4.1-beta"
+    "ucss": "~0.4.6-beta"
   }
 }

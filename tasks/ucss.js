@@ -40,7 +40,7 @@ module.exports = function(grunt) {
       if (result.total_unused) {
         grunt.log.subhead(result.total_unused + ' unused CSS selectors found!');
         _.each(result.selectors, function(data, selector) {
-          if (!data.ignored && !data.matches_html) {
+          if (!data.ignored && !data.whitelisted && !data.matches_html) {
             grunt.log.write(selector, ' => ');
             var filespecs = grunt.log.wordlist(_.map(data.pos_css, function(positions, filename) {
               return filename + '[' + positions.join(',') + ']';
