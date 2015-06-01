@@ -1,6 +1,6 @@
 # grunt-ucss
 
-> Run [ucss](https://github.com/operasoftware/ucss) with grunt.
+> Run [ucss](https://github.com/oyvindeh/ucss) with grunt.
 
 ## Getting Started
 _If you haven't used [grunt][] before, be sure to check out the [Getting Started][] guide._
@@ -61,7 +61,7 @@ be listed or cleaned away even though it isn't used.
 Type: `Object`
 Default value: `null`
 
-Let's you specify authentication to use. See [ucss auth documentation](https://github.com/operasoftware/ucss#logging-in) for more details
+Let's you specify authentication to use. See [ucss auth documentation](https://github.com/oyvindeh/ucss#logging-in) for more details
 
 #### pages.crawl
 Type: `String`
@@ -92,4 +92,4 @@ got an idea or feature to add just tell med :)
   - 0.1.2 - Updated the README to remove text about *cleaned version*
 
 
-[ucss]: https://github.com/operasoftware/ucss
+[ucss]: https://github.com/oyvindeh/ucss
