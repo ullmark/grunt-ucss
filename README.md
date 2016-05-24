@@ -85,7 +85,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 ## TODO
 So, I started up this task and then abandoned it for a while... I've released this initial version just 
 to get a version ppl can start using. I will add more test-cases and so on later on, and if you
-got an idea or feature to add just tell med :)
+got an idea or feature to add just tell me :)
 
 ## Release History
   - 0.1.0 - A first alpha version that prints unused selectors and their location in the css-files
